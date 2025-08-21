@@ -30,7 +30,7 @@ make run
 
 You should see an output like this:
 
-`
+```
 Found 1000 images in directory 'images'.
 Loading and resizing images...
 
@@ -53,4 +53,4 @@ Speedup: 189.50x
 Verifying results...
 Results verified successfully!
 Results verified successfully!
-`
+```
