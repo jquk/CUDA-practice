@@ -9,30 +9,27 @@ Then does the same in the CPU and compares both results, and shows the metric th
 Edit the section **download_images** in the **Makefile**, to replace or add the images that you want to process.
 
 Open the terminal and go to the directory where the **Makefile** is located, then run:
+
 `
 make download_stb
 `
 
 # Configure
-If you don't want to **save the processed images**, then disable the option by setting to zero the corresponding macro inside the file **batch_images.cu**:
-`
-#define ENABLE_SAVING_PROCESSED_IMAGES 0U
-`
+If you don't want to **save the processed images**, then disable the option by setting to zero the corresponding macro inside the file **batch_images.cu**: `#define ENABLE_SAVING_PROCESSED_IMAGES 0U`
 
-You can also update target (relative) path for the images to be processed, but editing the following macro inside **batch_images.cu**:
-`
-#define IMAGES_PATH "images"
-`
+You can also update target (relative) path for the images to be processed, but editing the following macro inside **batch_images.cu**: `#define IMAGES_PATH "images"`
 
 
 # Build and run
 Open the terminal and go to the directory where the **Makefile** is located, then run:
+
 `
 make
 make run
 `
 
 You should see an output like this:
+
 `
 Found 1000 images in directory 'images'.
 Loading and resizing images...
