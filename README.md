@@ -9,12 +9,6 @@ Then does the same in the CPU and compares both results, and shows the metric th
 # Download images
 Edit the section **download_images** in the **Makefile**, to replace or add the images that you want to process.
 
-Open the terminal and go to the directory where the **Makefile** is located, then run:
-
-`
-make download_stb
-`
-
 # Configure
 You can specify the **target path** where the images to be processed are located, and whether you want to **save the processed images**, by updating the corresponding command line arguments passed to the program as specified in the **run** option inside the **Makefile**, e.g:
 ```
