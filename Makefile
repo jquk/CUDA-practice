@@ -15,6 +15,7 @@ download_stb:
 	wget https://github.com/nothings/stb/blob/master/stb_image_write.h
 
 download_images:
+	mkdir -p images
 	cd images
 	wget https://github.com/mikolalysenko/lena/blob/master/lena.png
 	wget https://github.com/mohammadimtiazz/standard-test-images-for-Image-Processing/blob/master/standard_test_images/baboon.png
