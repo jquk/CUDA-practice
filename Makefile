@@ -6,7 +6,7 @@ TARGET = cuda_learning
 # nvcc -arch=sm_70 -O3 batch_images.cu -o image_processor -ldl
 
 $(TARGET): batch_images.cu
-	$(NVCC) $(CFLAGS) $(LDFLAGS) -o $(TARGET) batch_images.cu
+	$(NVCC) $(CFLAGS) $(LDFLAGS) -o bin/$(TARGET) batch_images.cu
 
 download_stb:
 	wget https://raw.githubusercontent.com/nothings/stb/master/stb_image.h
@@ -37,7 +37,7 @@ build:
 	nvcc -arch=sm_70 -O3 batch_images.cu -o image_processor -ldl
 
 run: $(TARGET)
-	./$(TARGET) 'images/00' 0
+	./bin/$(TARGET) 'images/00' 0
 
 
 clean:
