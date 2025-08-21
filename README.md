@@ -1,5 +1,6 @@
 # CUDA-practice
-Repository to practice CUDA C/C++ programming techniques
+Repository to practice CUDA C/C++ programming techniques.
+**Batch Process 1000s of Images in CPU and GPU and Compare Performance.**
 
 This CUDA project downloads a batch of images and processes them in parallel in the GPU to convert them to grayscale and re-scales them.
 
