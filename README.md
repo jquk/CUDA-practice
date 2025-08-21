@@ -7,7 +7,8 @@ This CUDA project downloads a batch of images and processes them in parallel in 
 Then does the same in the CPU and compares both results, and shows the metric that compares the performance running the processing in parallel in the GPU versus doing it sequentially in the CPU.
 
 # Download images
-Edit the section **download_images** in the **Makefile**, to replace or add the images that you want to process.
+Edit the section **download_images** in the **Makefile**, to replace or add the URLs to the images that you want to process.
+Then run `make download_images`.
 
 # Configure
 You can specify the **target path** where the images to be processed are located, and whether you want to **save the processed images**, by updating the corresponding command line arguments passed to the program as specified in the **run** option inside the **Makefile**, e.g:
