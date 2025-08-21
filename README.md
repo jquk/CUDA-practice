@@ -26,14 +26,6 @@ run: $(TARGET)
 	./$(TARGET) 'images/01' 0
 ```
 
-
-If you don't want to **save the processed images**, then update the corresponding command line argument passed to the program as specified in the **run** option inside the **Makefile**:
-
- the option by setting to zero the corresponding macro inside the file **batch_images.cu**: `#define ENABLE_SAVING_PROCESSED_IMAGES 0U`
-
-You can also update target (relative) path for the images to be processed, but editing the following macro inside **batch_images.cu**: `#define IMAGES_PATH "images"`
-
-
 # Build and run
 Open the terminal and go to the directory where the **Makefile** is located, then run:
 
