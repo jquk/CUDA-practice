@@ -4,4 +4,4 @@
 *.ptx
 *.cubin
 *.fatbin
-bin/
+bin/*

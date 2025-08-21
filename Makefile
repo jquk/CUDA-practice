@@ -5,7 +5,9 @@ TARGET = cuda_learning
 
 # nvcc -arch=sm_70 -O3 batch_images.cu -o image_processor -ldl
 
+
 $(TARGET): batch_images.cu
+	mkdir -p bin
 	$(NVCC) $(CFLAGS) $(LDFLAGS) -o bin/$(TARGET) batch_images.cu
 
 download_stb:
