@@ -24,8 +24,7 @@ You can also update target (relative) path for the images to be processed, but e
 Open the terminal and go to the directory where the **Makefile** is located, then run:
 
 `
-make
-make run
+make && make run
 `
 
 You should see an output like this:
