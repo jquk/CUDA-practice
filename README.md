@@ -15,7 +15,21 @@ make download_stb
 `
 
 # Configure
-If you don't want to **save the processed images**, then disable the option by setting to zero the corresponding macro inside the file **batch_images.cu**: `#define ENABLE_SAVING_PROCESSED_IMAGES 0U`
+You can specify the **target path** where the images to be processed are located, and whether you want to **save the processed images**, by updating the corresponding command line arguments passed to the program as specified in the **run** option inside the **Makefile**, e.g:
+```
+run: $(TARGET)
+	./$(TARGET) '<target-path>' <{0, 1}>
+```
+Let's say you want to process the images under 'images/01' and don't want to save the processed images, then set it like this:
+```
+run: $(TARGET)
+	./$(TARGET) 'images/01' 0
+```
+
+
+If you don't want to **save the processed images**, then update the corresponding command line argument passed to the program as specified in the **run** option inside the **Makefile**:
+
+ the option by setting to zero the corresponding macro inside the file **batch_images.cu**: `#define ENABLE_SAVING_PROCESSED_IMAGES 0U`
 
 You can also update target (relative) path for the images to be processed, but editing the following macro inside **batch_images.cu**: `#define IMAGES_PATH "images"`
 
@@ -23,9 +37,7 @@ You can also update target (relative) path for the images to be processed, but e
 # Build and run
 Open the terminal and go to the directory where the **Makefile** is located, then run:
 
-`
-make && make run
-`
+`make && make run`
 
 You should see an output like this:
 

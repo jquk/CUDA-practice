@@ -27,13 +27,8 @@
 #include "stb_image.h"
 
 // Add this for saving images
-#define ENABLE_SAVING_PROCESSED_IMAGES 0U
-#if (ENABLE_SAVING_PROCESSED_IMAGES == 1U)
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
-#endif
-
-#define IMAGES_PATH "images/00"
 
 #define CHECK(call) {\
     if ((call) != cudaSuccess) {\
@@ -157,8 +152,15 @@ void loadImageToBatch(const char* path, unsigned char* batch_data, int batch_ind
     // ... rest of the function
 }
 
+// Function to create directory (platform-specific)
+void createDirectory(const char* path) {
+    #ifdef _WIN32
+        _mkdir(path);
+    #else
+        mkdir(path, 0755);
+    #endif
+}
 
-#if (ENABLE_SAVING_PROCESSED_IMAGES == 1U)
 // Function to save processed images
 void saveProcessedImages(float* processed_data, int num_images, const char* output_dir) {
     char filename[256];
@@ -201,12 +203,25 @@ void saveProcessedImages(float* processed_data, int num_images, const char* outp
     }
     printf("All %d images saved successfully!\n", num_images);
 }
-#endif /*(ENABLE_SAVING_PROCESSED_IMAGES == 1U)*/
 
 
-int main() {
+int main(int argc, char* argv[]) {
+    // Check command line arguments
+    if (argc < 2 || argc > 3) {
+        printf("Usage: %s <image_directory> [save_output]\n", argv[0]);
+        printf("  <image_directory>: Path to directory containing images\n");
+        printf("  [save_output]: 1 to save processed images, 0 to not save (default: 0)\n");
+        return 1;
+    }
+
+    const char* image_dir = argv[1];
+
+    int save_output = 0;
+    if (argc == 3) {
+        save_output = atoi(argv[2]);
+    }
+
     char** image_files;
-    const char* image_dir = IMAGES_PATH;
 
     // 1. Get list of image files
     NUM_IMAGES = getImageFiles(image_dir, &image_files);
@@ -215,6 +230,7 @@ int main() {
         return 1;
     }
     printf("Found %d images in directory '%s'.\n", NUM_IMAGES, image_dir);
+    printf("Save output: %s\n", save_output ? "ENABLED" : "DISABLED");
 
     size_t input_size = NUM_IMAGES * PIXELS_PER_IMG * sizeof(unsigned char);
     size_t output_size = NUM_IMAGES * TARGET_HEIGHT * TARGET_WIDTH * sizeof(float);
@@ -312,6 +328,14 @@ int main() {
     // Save the processed images
     saveProcessedImages(h_output_gpu, NUM_IMAGES, "output");
 #endif /*(ENABLE_SAVING_PROCESSED_IMAGES == 1U)*/
+
+
+    // Save processed images if requested
+    if (save_output) {
+        saveProcessedImages(h_output_gpu, NUM_IMAGES, "output");
+    } else {
+        printf("Skipping image save (use second argument '1' to save)\n");
+    }
 
     // Cleanup
     free(h_input);

@@ -37,7 +37,7 @@ build:
 	nvcc -arch=sm_70 -O3 batch_images.cu -o image_processor -ldl
 
 run: $(TARGET)
-	./$(TARGET)
+	./$(TARGET) 'images/00' 0
 
 
 clean:
