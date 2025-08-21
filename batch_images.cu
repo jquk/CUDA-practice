@@ -24,11 +24,11 @@
 #define STBI_NO_HDR   // comment this out to enable HDR
 #define STBI_NO_TIF   // comment this out to enable TIFF
 
-#include "stb_image.h"
+#include "lib/stb_image.h"
 
 // Add this for saving images
 #define STB_IMAGE_WRITE_IMPLEMENTATION
-#include "stb_image_write.h"
+#include "lib/stb_image_write.h"
 
 #define CHECK(call) {\
     if ((call) != cudaSuccess) {\
